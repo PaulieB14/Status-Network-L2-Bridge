@@ -1,0 +1,34 @@
+specVersion: 1.3.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: L2TokenBridge
+    network: status-sepolia
+    source:
+      address: "0xbC7f9571152a8e21942b2aEa4831a27f1149af19"
+      abi: L2TokenBridge
+      startBlock: 25
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - BridgingInitiatedV2
+        - BridgingFinalized
+        - NewTokenDeployed
+        - DailyBridgeStats
+        - HourlyBridgeStats
+      abis:
+        - name: L2TokenBridge
+          file: ./abis/L2TokenBridge.json
+      eventHandlers:
+        - event: BridgingInitiatedV2(indexed address,indexed address,indexed address,uint256)
+          handler: handleBridgingInitiatedV2
+        - event: BridgingFinalized(indexed address,indexed address,uint256,indexed address)
+          handler: handleBridgingFinalized
+        - event: NewTokenDeployed(indexed address,indexed address)
+          handler: handleNewTokenDeployed
+      file: ./src/l2-token-bridge.ts

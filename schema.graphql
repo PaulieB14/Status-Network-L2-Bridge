@@ -1,0 +1,48 @@
+type BridgingInitiatedV2 @entity(immutable: true) {
+  id: Bytes!
+  sender: Bytes!
+  recipient: Bytes!
+  token: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type BridgingFinalized @entity(immutable: true) {
+  id: Bytes!
+  nativeToken: Bytes!
+  bridgedToken: Bytes!
+  amount: BigInt!
+  recipient: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewTokenDeployed @entity(immutable: true) {
+  id: Bytes!
+  bridgedToken: Bytes!
+  nativeToken: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type DailyBridgeStats @entity(immutable: true) {
+  id: Bytes!
+  date: BigInt!
+  totalBridgingInitiated: BigInt!
+  totalBridgingFinalized: BigInt!
+  bridgingInitiatedCount: Int!
+  bridgingFinalizedCount: Int!
+}
+
+type HourlyBridgeStats @entity(immutable: true) {
+  id: Bytes!
+  hour: BigInt!
+  totalBridgingInitiated: BigInt!
+  totalBridgingFinalized: BigInt!
+  bridgingInitiatedCount: Int!
+  bridgingFinalizedCount: Int!
+}

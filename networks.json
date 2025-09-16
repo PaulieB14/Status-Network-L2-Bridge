@@ -1,0 +1,8 @@
+{
+  "status-sepolia": {
+    "TransparentUpgradeableProxy": {
+      "address": "0xbC7f9571152a8e21942b2aEa4831a27f1149af19",
+      "startBlock": 25
+    }
+  }
+}

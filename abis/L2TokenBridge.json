@@ -1,0 +1,33 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "address", "name": "sender", "type": "address"},
+      {"indexed": true, "internalType": "address", "name": "recipient", "type": "address"},
+      {"indexed": true, "internalType": "address", "name": "token", "type": "address"},
+      {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"}
+    ],
+    "name": "BridgingInitiatedV2",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "address", "name": "nativeToken", "type": "address"},
+      {"indexed": true, "internalType": "address", "name": "bridgedToken", "type": "address"},
+      {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"},
+      {"indexed": true, "internalType": "address", "name": "recipient", "type": "address"}
+    ],
+    "name": "BridgingFinalized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {"indexed": true, "internalType": "address", "name": "bridgedToken", "type": "address"},
+      {"indexed": true, "internalType": "address", "name": "nativeToken", "type": "address"}
+    ],
+    "name": "NewTokenDeployed",
+    "type": "event"
+  }
+]

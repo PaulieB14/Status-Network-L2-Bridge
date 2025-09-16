@@ -1,0 +1,18 @@
+{
+  "name": "status-network-bridge",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ status-network-bridge",
+    "create-local": "graph create --node http://localhost:8020/ status-network-bridge",
+    "remove-local": "graph remove --node http://localhost:8020/ status-network-bridge",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 status-network-bridge",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.97.1",
+    "@graphprotocol/graph-ts": "0.37.0"
+  },
+  "devDependencies": { "matchstick-as": "0.6.0" }
+}
