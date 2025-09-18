@@ -20,6 +20,17 @@ type BridgingFinalized @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type BridgingFinalizedV2 @entity(immutable: true) {
+  id: Bytes!
+  nativeToken: Bytes!
+  bridgedToken: Bytes!
+  amount: BigInt!
+  recipient: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
 type NewTokenDeployed @entity(immutable: true) {
   id: Bytes!
   bridgedToken: Bytes!
@@ -29,7 +40,7 @@ type NewTokenDeployed @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type DailyBridgeStats @entity(immutable: true) {
+type DailyBridgeStats @entity(immutable: false) {
   id: Bytes!
   date: BigInt!
   totalBridgingInitiated: BigInt!
@@ -38,11 +49,140 @@ type DailyBridgeStats @entity(immutable: true) {
   bridgingFinalizedCount: Int!
 }
 
-type HourlyBridgeStats @entity(immutable: true) {
+type HourlyBridgeStats @entity(immutable: false) {
   id: Bytes!
   hour: BigInt!
   totalBridgingInitiated: BigInt!
   totalBridgingFinalized: BigInt!
   bridgingInitiatedCount: Int!
   bridgingFinalizedCount: Int!
+}
+
+# L2 Message Service Entities
+type MessageSent @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes!
+  to: Bytes!
+  fee: BigInt!
+  value: BigInt!
+  nonce: BigInt!
+  calldata: Bytes!
+  messageHash: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type MessageClaimed @entity(immutable: true) {
+  id: Bytes!
+  messageHash: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type RollingHashUpdated @entity(immutable: true) {
+  id: Bytes!
+  messageNumber: BigInt!
+  rollingHash: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type L1L2MessageHashesAddedToInbox @entity(immutable: true) {
+  id: Bytes!
+  messageHashes: [Bytes!]!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type DailyMessageStats @entity(immutable: false) {
+  id: Bytes!
+  date: BigInt!
+  totalMessagesSent: BigInt!
+  totalMessagesReceived: BigInt!
+  totalMessagesClaimed: BigInt!
+  totalRollingHashUpdates: BigInt!
+  totalL1L2MessageHashesAddedToInbox: BigInt!
+  messagesSentCount: Int!
+  messagesReceivedCount: Int!
+  messagesClaimedCount: Int!
+  rollingHashUpdatesCount: Int!
+  l1L2MessageHashesAddedToInboxCount: Int!
+}
+
+type HourlyMessageStats @entity(immutable: false) {
+  id: Bytes!
+  hour: BigInt!
+  totalMessagesSent: BigInt!
+  totalMessagesReceived: BigInt!
+  totalMessagesClaimed: BigInt!
+  totalRollingHashUpdates: BigInt!
+  totalL1L2MessageHashesAddedToInbox: BigInt!
+  messagesSentCount: Int!
+  messagesReceivedCount: Int!
+  messagesClaimedCount: Int!
+  rollingHashUpdatesCount: Int!
+  l1L2MessageHashesAddedToInboxCount: Int!
+}
+
+# L2 Faucet Entities
+type TokensDistributed @entity(immutable: true) {
+  id: Bytes!
+  recipient: Bytes!
+  token: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type NativeTokensDistributed @entity(immutable: true) {
+  id: Bytes!
+  recipient: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type DailyFaucetStats @entity(immutable: false) {
+  id: Bytes!
+  date: BigInt!
+  totalTokensDistributed: BigInt!
+  totalNativeTokensDistributed: BigInt!
+  tokensDistributedCount: Int!
+  nativeTokensDistributedCount: Int!
+}
+
+type HourlyFaucetStats @entity(immutable: false) {
+  id: Bytes!
+  hour: BigInt!
+  totalTokensDistributed: BigInt!
+  totalNativeTokensDistributed: BigInt!
+  tokensDistributedCount: Int!
+  nativeTokensDistributedCount: Int!
+}
+
+# Proxy Contract Entities
+type ProxyUpgraded @entity(immutable: true) {
+  id: Bytes!
+  proxyAddress: Bytes!
+  oldImplementation: Bytes!
+  newImplementation: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
+}
+
+type AdminChanged @entity(immutable: true) {
+  id: Bytes!
+  proxyAddress: Bytes!
+  previousAdmin: Bytes!
+  newAdmin: Bytes!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: Bytes!
 }

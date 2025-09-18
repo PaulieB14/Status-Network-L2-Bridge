@@ -18,7 +18,7 @@
       {"indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256"},
       {"indexed": true, "internalType": "address", "name": "recipient", "type": "address"}
     ],
-    "name": "BridgingFinalized",
+    "name": "BridgingFinalizedV2",
     "type": "event"
   },
   {
